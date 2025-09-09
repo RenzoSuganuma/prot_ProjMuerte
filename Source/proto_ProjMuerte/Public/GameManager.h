@@ -13,12 +13,7 @@ class PROTO_PROJMUERTE_API AGameManager : public AActor
 
 protected:
 	UPROPERTY(EditAnywhere)
-	float m_timelimit;
-
-	UPROPERTY(EditAnywhere)
-	UWorld* m_levelTitle;
-
-	float m_elapsed;
+	UWorld* m_levelNext;
 
 public:
 	// Sets default values for this actor's properties
@@ -33,7 +28,7 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	
+
 	UFUNCTION(BlueprintCallable)
-	float GetTimeLimit() const;
+	void ExitInGame() const;
 };

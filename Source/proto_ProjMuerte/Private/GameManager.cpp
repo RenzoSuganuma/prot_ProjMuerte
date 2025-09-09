@@ -2,11 +2,10 @@
 
 
 #include "GameManager.h"
-
 #include "Kismet/GameplayStatics.h"
 
 // Sets default values
-AGameManager::AGameManager() : m_elapsed(0)
+AGameManager::AGameManager()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -27,16 +26,9 @@ void AGameManager::Destroyed()
 void AGameManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-	m_elapsed += DeltaTime;
-
-	if (m_elapsed >= m_timelimit)
-	{
-		UGameplayStatics::OpenLevel(this, FName(m_levelTitle->GetName()));
-	}
 }
 
-float AGameManager::GetTimeLimit() const
+void AGameManager::ExitInGame() const
 {
-	return m_timelimit - m_elapsed;
+	UGameplayStatics::OpenLevel(this, FName(m_levelNext->GetName()));
 }
